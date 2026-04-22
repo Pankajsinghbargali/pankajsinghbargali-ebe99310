@@ -1,26 +1,27 @@
 import { useEffect, useRef, useState } from 'react';
 import { Megaphone, FileText, BarChart2, Zap } from 'lucide-react';
+import TiltCard from './TiltCard';
 
 const skillCategories = [
   {
-    title: 'Paid Media',
+    title: 'Performance Marketing',
     icon: Megaphone,
-    skills: ['Google Ads (Search, Display, Shopping, PMax)', 'Meta Ads (FB & IG)', 'LinkedIn Ads', 'Programmatic (DV360)', 'Twitter/X Ads', 'Amazon Ads'],
+    skills: ['Meta Ads (FB & IG)', 'Google Ads (Search, Display, PMax)', 'ROAS Optimization', 'A/B Testing & CRO', 'Funnel Optimization', 'Bid Strategy'],
   },
   {
-    title: 'Organic & Content',
-    icon: FileText,
-    skills: ['SEO (On-page, Off-page, Technical)', 'Content Strategy', 'Social Media Management', 'Email & WhatsApp Marketing', 'Influencer Marketing'],
+    title: 'AI & Automation',
+    icon: Zap,
+    skills: ['ChatGPT', 'Claude', 'AI-Powered Campaign Optimization', 'Marketing Automation', 'Surfer SEO', 'SEMrush'],
   },
   {
     title: 'Analytics & Tools',
     icon: BarChart2,
-    skills: ['Google Analytics 4 (GA4)', 'Google Tag Manager', 'Looker Studio', 'SEMrush / Ahrefs', 'HubSpot', 'Salesforce Marketing Cloud'],
+    skills: ['GA4', 'Google Tag Manager', 'Google Data Studio', 'Meta Business Suite', 'Hotjar', 'Performance Max'],
   },
   {
-    title: 'Specialisations',
-    icon: Zap,
-    skills: ['AI-Powered Campaign Optimisation', 'Marketing Automation', 'CRO & A/B Testing', 'Lead Generation (B2B & B2C)', 'E-commerce Marketing', 'App Marketing (ASO)'],
+    title: 'CRM & Strategy',
+    icon: FileText,
+    skills: ['HubSpot', 'Zoho CRM', 'Mailchimp', 'Klaviyo', 'Brand Strategy', 'Team Leadership'],
   },
 ];
 
@@ -49,11 +50,11 @@ export default function SkillsSection() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {skillCategories.map(({ title, icon: Icon, skills }, idx) => (
-            <div
+          {skillCategories.map(({ title, icon: Icon, skills }) => (
+            <TiltCard
               key={title}
-              className="glass rounded-2xl p-8 gold-border-glow hover:shadow-[0_0_40px_hsl(var(--gold)/0.1)] transition-all duration-500"
-              style={{ animationDelay: `${idx * 150}ms` }}
+              intensity={6}
+              className="glass rounded-2xl p-8 gold-border-glow hover:shadow-[0_0_40px_hsl(var(--gold)/0.15)]"
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center">
@@ -65,13 +66,13 @@ export default function SkillsSection() {
                 {skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1.5 text-xs font-medium rounded-full bg-gold/10 text-gold border border-gold/20 hover:bg-gold/20 transition-colors cursor-default"
+                    className="px-3 py-1.5 text-xs font-medium rounded-full bg-gold/10 text-gold border border-gold/20 hover:bg-gold/20 hover:scale-105 transition-all cursor-default"
                   >
                     {skill}
                   </span>
                 ))}
               </div>
-            </div>
+            </TiltCard>
           ))}
         </div>
       </div>

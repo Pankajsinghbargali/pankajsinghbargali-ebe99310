@@ -1,25 +1,22 @@
 import { useEffect, useRef, useState } from 'react';
 import { Award, GraduationCap } from 'lucide-react';
+import TiltCard from './TiltCard';
 
 const certifications = [
   'Google Ads Search Certification',
-  'Google Ads Display Certification',
-  'Google Analytics Individual Qualification',
-  'Google Ads Measurement Certification',
-  'HubSpot Inbound Marketing Certification',
-  'Meta Blueprint Certification',
+  'Google Analytics 4 Certification',
+  'Meta Blueprint Certified',
+  'HubSpot Content Marketing Certification',
 ];
 
 const education = [
   {
-    degree: 'Advanced Program in Digital Marketing',
-    institution: 'Digiperform, Jaipur',
-    year: '2021',
+    degree: 'MBA – Marketing (Pursuing)',
+    institution: 'Vivekananda Global University, Jaipur',
   },
   {
-    degree: 'Bachelor of Commerce (B.Com)',
-    institution: 'University of Rajasthan',
-    year: '2020',
+    degree: 'BCA – Computer Applications',
+    institution: 'JECRC University, Jaipur',
   },
 ];
 
@@ -48,8 +45,7 @@ export default function CertificationsSection() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {/* Certifications */}
-          <div className="glass rounded-2xl p-8 gold-border-glow">
+          <TiltCard intensity={6} className="glass rounded-2xl p-8 gold-border-glow">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center">
                 <Award className="w-6 h-6 text-gold" />
@@ -64,10 +60,9 @@ export default function CertificationsSection() {
                 </li>
               ))}
             </ul>
-          </div>
+          </TiltCard>
 
-          {/* Education */}
-          <div className="glass rounded-2xl p-8 gold-border-glow">
+          <TiltCard intensity={6} className="glass rounded-2xl p-8 gold-border-glow">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center">
                 <GraduationCap className="w-6 h-6 text-gold" />
@@ -79,13 +74,10 @@ export default function CertificationsSection() {
                 <div key={edu.degree}>
                   <h4 className="font-semibold text-foreground">{edu.degree}</h4>
                   <p className="text-sm text-muted-foreground">{edu.institution}</p>
-                  <span className="inline-block mt-1 px-2 py-0.5 rounded-full text-xs bg-gold/10 text-gold border border-gold/20">
-                    {edu.year}
-                  </span>
                 </div>
               ))}
             </div>
-          </div>
+          </TiltCard>
         </div>
       </div>
     </section>

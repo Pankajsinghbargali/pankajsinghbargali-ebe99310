@@ -3,47 +3,42 @@ import { Briefcase } from 'lucide-react';
 
 const experiences = [
   {
-    role: 'Senior Digital Marketing Specialist',
-    company: 'Developer Bazaar Technologies',
-    location: 'Jaipur',
-    period: 'Jan 2024 – Present',
+    role: 'Asst. Manager – Digital Marketing',
+    company: 'Value Homz Group',
+    period: 'Apr 2023 – Present',
     highlights: [
-      'Leading multi-channel digital campaigns (Google, Meta, LinkedIn, Programmatic) with monthly budgets exceeding ₹25L',
-      'Improved ROAS by 3.2x through AI-driven bid strategies and audience segmentation',
-      'Built and managed performance dashboards using GA4, Looker Studio & GTM',
-      'Implemented marketing automation workflows across HubSpot and Salesforce',
+      'Lead paid media across Meta & Google Ads for luxury real estate & travel brands, driving qualified lead generation.',
+      'Achieved 150% MoM organic growth via AI-assisted content strategies across Instagram, Facebook & LinkedIn.',
+      'Reduced CPL by 35% and improved ROAS by 42% through A/B testing frameworks.',
+      'Generated INR 15+ Crores qualified sales pipeline; saved 20+ hrs/week via ChatGPT & Claude automation.',
+    ],
+  },
+  {
+    role: 'Assistant Marketing Manager',
+    company: '21 Express',
+    period: 'Oct 2021 – Apr 2023',
+    highlights: [
+      'Reduced CAC by 28% through precision targeting & bid optimization across paid social & Google Ads.',
+      'Built automated email workflows (Mailchimp, HubSpot): +25% open rates, +18% CTR.',
+      'Developed real-time performance dashboards in GA4 & Google Data Studio for live campaign monitoring.',
+    ],
+  },
+  {
+    role: 'Assistant Media Buyer',
+    company: 'RI WebSoft Pvt. Ltd.',
+    period: 'Sep 2020 – Oct 2021',
+    highlights: [
+      'Executed B2B paid campaigns via Facebook Business Manager generating 500+ qualified leads monthly.',
+      'Developed tailored client strategies using audience insights & buyer persona mapping.',
     ],
   },
   {
     role: 'Digital Marketing Specialist',
-    company: 'Developer Bazaar Technologies',
-    location: 'Jaipur',
-    period: 'Nov 2022 – Dec 2023',
+    company: 'Firstcall Digital Marketing',
+    period: 'Nov 2018 – Jul 2020',
     highlights: [
-      'Managed paid media for 20+ clients across healthcare, e-commerce, and SaaS verticals',
-      'Achieved 40% reduction in CPL through funnel optimisation and A/B testing',
-      'Designed and executed SEO strategies resulting in 150% organic traffic growth',
-    ],
-  },
-  {
-    role: 'Digital Marketing Executive',
-    company: 'Developer Bazaar Technologies',
-    location: 'Jaipur',
-    period: 'Oct 2021 – Oct 2022',
-    highlights: [
-      'Managed social media handles, content calendars, and ad campaigns',
-      'Assisted in launching Google Ads and Meta Ads campaigns for new product launches',
-      'Created detailed monthly reports using Google Analytics and Data Studio',
-    ],
-  },
-  {
-    role: 'Digital Marketing Intern',
-    company: 'Developer Bazaar Technologies',
-    location: 'Jaipur',
-    period: 'Apr 2021 – Sep 2021',
-    highlights: [
-      'Supported paid campaigns and reported on KPIs using Google Ads & Meta Business Suite',
-      'Conducted keyword research and assisted in on-page SEO for 10+ websites',
+      'Managed multi-client paid social & Google Ads campaigns across diverse industries.',
+      'Led 2-member design team; maintained 95% client satisfaction score.',
     ],
   },
 ];
@@ -73,22 +68,20 @@ export default function ExperienceSection() {
         </div>
 
         <div className="relative max-w-3xl mx-auto">
-          {/* Timeline line */}
           <div className="absolute left-6 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-gold/50 via-gold/20 to-transparent" />
 
           <div className="space-y-8">
             {experiences.map((exp, idx) => (
-              <div key={idx} className="relative pl-16 md:pl-20">
-                {/* Dot */}
-                <div className="absolute left-4 md:left-6 top-6 w-4 h-4 rounded-full bg-gold gold-glow border-2 border-background" />
+              <div key={idx} className="relative pl-16 md:pl-20 group">
+                <div className="absolute left-4 md:left-6 top-6 w-4 h-4 rounded-full bg-gold gold-glow border-2 border-background group-hover:scale-150 transition-transform duration-300" />
 
-                <div className="glass rounded-2xl p-6 md:p-8 gold-border-glow hover:shadow-[0_0_30px_hsl(var(--gold)/0.1)] transition-all">
+                <div className="glass rounded-2xl p-6 md:p-8 gold-border-glow hover:shadow-[0_0_40px_hsl(var(--gold)/0.15)] hover:-translate-y-1 hover:border-gold/40 transition-all duration-300">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
                     <div>
                       <h3 className="text-lg font-serif font-bold text-foreground">{exp.role}</h3>
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <Briefcase className="w-3.5 h-3.5 text-gold" />
-                        <span>{exp.company}, {exp.location}</span>
+                        <span>{exp.company}</span>
                       </div>
                     </div>
                     <span className="px-3 py-1 rounded-full text-xs font-medium bg-gold/10 text-gold border border-gold/20 whitespace-nowrap">
