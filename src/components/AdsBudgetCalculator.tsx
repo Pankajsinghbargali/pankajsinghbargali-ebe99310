@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import type { ReactNode } from 'react';
 import { Calculator, IndianRupee, LineChart, MousePointerClick } from 'lucide-react';
 import RevealHeading from './RevealHeading';
 
@@ -112,7 +113,7 @@ export default function AdsBudgetCalculator() {
   );
 }
 
-function NumberField({ icon, label, value, setValue }: { icon: React.ReactNode; label: string; value: number; setValue: (value: number) => void }) {
+function NumberField({ icon, label, value, setValue }: { icon: ReactNode; label: string; value: number; setValue: (value: number) => void }) {
   return (
     <label className="group block rounded-xl border border-border bg-background p-4 transition-all hover:border-gold/60 focus-within:border-gold focus-within:ring-4 focus-within:ring-gold/10">
       <span className="flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">
