@@ -27,7 +27,6 @@ function Blob() {
           thickness={1.4}
           roughness={0.12}
           ior={1.45}
-          chromaticAberration={0.05}
           clearcoat={1}
           clearcoatRoughness={0.1}
           color={'#f5f2ed'}
