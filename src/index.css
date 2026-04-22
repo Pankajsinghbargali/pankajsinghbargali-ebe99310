@@ -122,6 +122,37 @@
   }
 }
 
+  /* Tilt card glare effect */
+  .tilt-card {
+    position: relative;
+  }
+  .tilt-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), hsl(var(--gold) / 0.18), transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .tilt-card:hover::after {
+    opacity: 1;
+  }
+
+  /* Magnetic hover */
+  .magnetic {
+    transition: transform 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+}
+
+/* Hide native cursor on hover-capable devices */
+@media (hover: hover) and (pointer: fine) {
+  html, body, a, button, input, textarea, [role="button"] {
+    cursor: none !important;
+  }
+}
+
 @keyframes shimmer {
   0%, 100% { background-position: 200% center; }
   50% { background-position: 0% center; }
