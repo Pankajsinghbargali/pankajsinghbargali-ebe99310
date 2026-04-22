@@ -1,22 +1,27 @@
 import { Suspense, lazy, useEffect, useRef } from 'react';
-import { ChevronDown, Sparkles } from 'lucide-react';
+import { ArrowDown, ArrowRight } from 'lucide-react';
 
-const Globe3D = lazy(() => import('./Globe3D'));
+const GlassBlob3D = lazy(() => import('./GlassBlob3D'));
 
 export default function HeroSection() {
   const textRef = useRef<HTMLDivElement>(null);
-  const globeRef = useRef<HTMLDivElement>(null);
+  const blobRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (window.matchMedia('(hover: none)').matches) return;
+    let raf = 0;
+    let tx = 0, ty = 0, bx = 0, by = 0;
     const handle = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth - 0.5) * 2;
       const y = (e.clientY / window.innerHeight - 0.5) * 2;
-      if (textRef.current) {
-        textRef.current.style.transform = `translate3d(${x * -12}px, ${y * -8}px, 0)`;
-      }
-      if (globeRef.current) {
-        globeRef.current.style.transform = `translate3d(${x * 18}px, ${y * 12}px, 0)`;
+      tx = x * -8; ty = y * -6;
+      bx = x * 14; by = y * 10;
+      if (!raf) {
+        raf = requestAnimationFrame(() => {
+          if (textRef.current) textRef.current.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+          if (blobRef.current) blobRef.current.style.transform = `translate3d(${bx}px, ${by}px, 0)`;
+          raf = 0;
+        });
       }
     };
     window.addEventListener('mousemove', handle);
@@ -24,56 +29,74 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-primary to-background" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(var(--gold)/0.06)_0%,_transparent_70%)]" />
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-background">
+      {/* subtle grain / vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(var(--gold)/0.06)_0%,_transparent_60%)]" />
 
-      <div className="relative z-10 container mx-auto px-6 flex flex-col lg:flex-row items-center gap-8">
-        <div ref={textRef} className="flex-1 text-center lg:text-left space-y-6 animate-fade-up transition-transform duration-300 ease-out">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass gold-border-glow">
-            <Sparkles className="w-4 h-4 text-gold" />
-            <span className="text-sm font-medium text-gold">AI-Driven Digital Marketing Specialist</span>
+      <div className="container-narrow relative z-10 grid lg:grid-cols-12 gap-12 items-center pt-24 pb-16">
+        <div ref={textRef} className="lg:col-span-7 transition-transform duration-300 ease-out">
+          <div className="animate-fade-up">
+            <span className="label-eyebrow inline-flex items-center gap-2">
+              <span className="w-6 h-px bg-gold" />
+              Marketing Strategist
+            </span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-serif leading-tight">
-            <span className="gold-shimmer">Pankaj</span>
-            <br />
-            <span className="text-foreground">Singh</span>
+          <h1
+            className="mt-8 text-[2.6rem] sm:text-6xl lg:text-7xl font-medium leading-[1.02] tracking-tight animate-fade-up"
+            style={{ animationDelay: '120ms', animationFillMode: 'both' }}
+          >
+            I build marketing systems
+            <br className="hidden sm:block" />
+            that turn <span className="font-editorial italic font-normal text-gold">attention</span>
+            <br className="hidden sm:block" />
+            into <span className="font-editorial italic font-normal">intent</span>.
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed">
-            5+ years scaling performance marketing — Meta &amp; Google Ads, <span className="text-gold">AI-powered automation</span>, delivering measurable ROAS, CPL reduction, and qualified pipeline growth.
+          <p
+            className="mt-8 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed animate-fade-up"
+            style={{ animationDelay: '260ms', animationFillMode: 'both' }}
+          >
+            Content, strategy, and psychology designed to attract the right audience —
+            and move them from curiosity to conversion.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+          <div
+            className="mt-12 flex flex-col sm:flex-row gap-4 animate-fade-up"
+            style={{ animationDelay: '380ms', animationFillMode: 'both' }}
+          >
             <a
-              href="#about"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-gold text-accent-foreground font-semibold hover:opacity-90 transition-all gold-glow hover:scale-105"
+              href="#case-studies"
+              className="group inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-ink text-offwhite text-sm font-medium hover:opacity-90 transition-all"
             >
-              Explore My Work
+              View My Work
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg gold-border-glow text-gold font-semibold hover:bg-gold/10 transition-all hover:scale-105"
+              className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full border border-ink/15 text-ink text-sm font-medium hover:bg-ink/5 transition-all"
             >
-              Get In Touch
+              Start a conversation
             </a>
           </div>
         </div>
 
-        <div ref={globeRef} className="flex-1 w-full h-[400px] md:h-[500px] lg:h-[600px] transition-transform duration-300 ease-out">
-          <Suspense fallback={
-            <div className="w-full h-full flex items-center justify-center">
-              <div className="w-32 h-32 rounded-full border border-gold/30 animate-pulse" />
-            </div>
-          }>
-            <Globe3D />
+        <div
+          ref={blobRef}
+          className="lg:col-span-5 w-full h-[360px] md:h-[460px] lg:h-[560px] transition-transform duration-300 ease-out animate-float-slow"
+        >
+          <Suspense fallback={<div className="w-full h-full" />}>
+            <GlassBlob3D />
           </Suspense>
         </div>
       </div>
 
-      <a href="#about" className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gold/50 animate-bounce">
-        <ChevronDown className="w-6 h-6" />
+      <a
+        href="#results"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-muted-foreground/60 hover:text-gold transition-colors"
+        aria-label="Scroll to results"
+      >
+        <ArrowDown className="w-5 h-5 animate-bounce" />
       </a>
     </section>
   );
