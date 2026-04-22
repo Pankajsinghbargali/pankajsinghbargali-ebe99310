@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const SELECTOR = 'button, a, [role="button"], input, textarea, select';
+const SELECTOR = 'button, a, [role="button"]';
 
 export default function ClickEffects() {
   useEffect(() => {
