@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,52 +6,52 @@
 
 @layer base {
   :root {
-    --background: 245 40% 13%;
-    --foreground: 240 20% 92%;
+    /* Off-white base */
+    --background: 39 27% 94%;          /* #F5F2ED */
+    --foreground: 0 0% 4%;             /* #0A0A0A */
 
-    --card: 245 35% 16%;
-    --card-foreground: 240 20% 92%;
+    --card: 36 22% 89%;                /* #EAE5DC */
+    --card-foreground: 0 0% 4%;
 
-    --popover: 245 35% 16%;
-    --popover-foreground: 240 20% 92%;
+    --popover: 39 27% 94%;
+    --popover-foreground: 0 0% 4%;
 
-    --primary: 245 50% 24%;
-    --primary-foreground: 43 56% 52%;
+    --primary: 0 0% 4%;                /* near-black */
+    --primary-foreground: 39 27% 94%;
 
-    --secondary: 245 30% 20%;
-    --secondary-foreground: 240 20% 92%;
+    --secondary: 36 22% 89%;
+    --secondary-foreground: 0 0% 4%;
 
-    --muted: 245 25% 20%;
-    --muted-foreground: 245 15% 60%;
+    --muted: 36 18% 86%;
+    --muted-foreground: 36 5% 40%;     /* #6B6760 */
 
-    --accent: 43 56% 52%;
-    --accent-foreground: 245 40% 13%;
+    --accent: 36 45% 51%;              /* #B8924A muted gold */
+    --accent-foreground: 39 27% 94%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 39 27% 94%;
 
-    --border: 245 30% 25%;
-    --input: 245 30% 25%;
-    --ring: 43 56% 52%;
+    --border: 36 15% 82%;
+    --input: 36 15% 82%;
+    --ring: 36 45% 51%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    --gold: 43 56% 52%;
-    --gold-light: 43 70% 70%;
-    --gold-dark: 43 50% 38%;
-    --purple-deep: 245 40% 13%;
-    --purple-mid: 245 35% 20%;
-    --purple-light: 252 40% 67%;
-    --lavender: 252 55% 80%;
+    --gold: 36 45% 51%;
+    --gold-light: 36 50% 62%;
+    --gold-dark: 36 40% 38%;
+    --ink: 0 0% 4%;
+    --beige: 36 22% 89%;
+    --offwhite: 39 27% 94%;
 
-    --sidebar-background: 245 40% 10%;
-    --sidebar-foreground: 240 20% 92%;
-    --sidebar-primary: 43 56% 52%;
-    --sidebar-primary-foreground: 245 40% 13%;
-    --sidebar-accent: 245 30% 20%;
-    --sidebar-accent-foreground: 240 20% 92%;
-    --sidebar-border: 245 30% 25%;
-    --sidebar-ring: 43 56% 52%;
+    --sidebar-background: 39 27% 94%;
+    --sidebar-foreground: 0 0% 4%;
+    --sidebar-primary: 0 0% 4%;
+    --sidebar-primary-foreground: 39 27% 94%;
+    --sidebar-accent: 36 22% 89%;
+    --sidebar-accent-foreground: 0 0% 4%;
+    --sidebar-border: 36 15% 82%;
+    --sidebar-ring: 36 45% 51%;
   }
 }
 
@@ -60,68 +60,52 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
-    font-family: 'DM Sans', sans-serif;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: 'ss01', 'cv11';
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  .font-editorial {
+    font-family: 'Instrument Serif', serif;
+    letter-spacing: -0.01em;
   }
 }
 
 @layer utilities {
-  .text-gold {
-    color: hsl(var(--gold));
+  .text-gold { color: hsl(var(--gold)); }
+  .bg-gold { background-color: hsl(var(--gold)); }
+  .border-gold { border-color: hsl(var(--gold)); }
+  .bg-ink { background-color: hsl(var(--ink)); }
+  .text-ink { color: hsl(var(--ink)); }
+  .bg-beige { background-color: hsl(var(--beige)); }
+
+  .label-eyebrow {
+    @apply text-xs uppercase tracking-[0.2em] text-muted-foreground font-medium;
   }
 
-  .bg-gold {
-    background-color: hsl(var(--gold));
+  .container-narrow {
+    @apply max-w-[1200px] mx-auto px-6 md:px-10;
   }
 
-  .border-gold {
-    border-color: hsl(var(--gold));
-  }
-
-  .text-lavender {
-    color: hsl(var(--lavender));
-  }
-
+  /* Subtle glass for nav */
   .glass {
-    background: hsl(var(--purple-mid) / 0.4);
-    backdrop-filter: blur(20px);
-    border: 1px solid hsl(var(--gold) / 0.15);
+    background: hsl(var(--background) / 0.7);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border-bottom: 1px solid hsl(var(--border) / 0.6);
   }
 
-  .gold-glow {
-    box-shadow: 0 0 30px hsl(var(--gold) / 0.2), 0 0 60px hsl(var(--gold) / 0.1);
-  }
-
-  .gold-text-glow {
-    text-shadow: 0 0 40px hsl(var(--gold) / 0.3);
-  }
-
-  .gold-shimmer {
-    background: linear-gradient(
-      110deg,
-      hsl(var(--gold-dark)) 0%,
-      hsl(var(--gold)) 45%,
-      hsl(var(--gold-light)) 55%,
-      hsl(var(--gold)) 100%
-    );
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shimmer 3s ease-in-out infinite;
-  }
-
-  .gold-border-glow {
-    border: 1px solid hsl(var(--gold) / 0.5);
-    box-shadow: 0 0 15px hsl(var(--gold) / 0.15), inset 0 0 15px hsl(var(--gold) / 0.05);
-  }
-
-  /* Tilt card glare effect */
+  /* Soft tilt glare (kept light) */
   .tilt-card {
     position: relative;
   }
@@ -130,19 +114,59 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), hsl(var(--gold) / 0.18), transparent 50%);
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), hsl(var(--ink) / 0.06), transparent 50%);
     opacity: 0;
     transition: opacity 0.3s;
     pointer-events: none;
   }
-  .tilt-card:hover::after {
-    opacity: 1;
+  .tilt-card:hover::after { opacity: 1; }
+
+  /* Underline on hover (story link) */
+  .story-link {
+    position: relative;
+  }
+  .story-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+  .story-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
   }
 
-  /* Magnetic hover */
-  .magnetic {
-    transition: transform 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+  /* Mask reveal — animates in via animate-reveal-mask when visible */
+  .reveal-mask {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1s cubic-bezier(0.7, 0, 0.2, 1);
   }
+  .reveal-mask.is-visible {
+    clip-path: inset(0 0 0 0);
+  }
+
+  .fade-up-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.9s ease-out, transform 0.9s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+  .fade-up-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .glow-ring {
+    box-shadow: 0 0 0 0 hsl(var(--gold) / 0.5);
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  .magnetic { transition: transform 0.3s cubic-bezier(0.2, 1, 0.3, 1); }
 }
 
 /* Hide native cursor on hover-capable devices */
@@ -152,29 +176,20 @@
   }
 }
 
-@keyframes shimmer {
-  0%, 100% { background-position: 200% center; }
-  50% { background-position: 0% center; }
-}
-
-@keyframes float {
+@keyframes float-slow {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+  50% { transform: translateY(-14px); }
 }
 
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(40px); }
+  from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(var(--gold) / 0.45); }
+  50% { box-shadow: 0 0 0 14px hsl(var(--gold) / 0); }
 }
 
-.animate-fade-up {
-  animation: fade-up 0.8s ease-out forwards;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+.animate-float-slow { animation: float-slow 7s ease-in-out infinite; }
+.animate-fade-up { animation: fade-up 0.9s cubic-bezier(0.2, 1, 0.3, 1) forwards; }
