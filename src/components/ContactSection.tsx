@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Globe } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
@@ -27,7 +27,6 @@ export default function ContactSection() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {/* Contact Info */}
           <div className="space-y-6">
             <p className="text-muted-foreground leading-relaxed">
               Ready to elevate your brand with AI-powered marketing strategies? Let's connect and explore how we can drive exceptional results together.
@@ -35,25 +34,27 @@ export default function ContactSection() {
 
             <div className="space-y-4">
               {[
-                { icon: Phone, label: '+91 6367 038 452', href: 'tel:+916367038452' },
-                { icon: Mail, label: 'pankajsingh98033@gmail.com', href: 'mailto:pankajsingh98033@gmail.com' },
-                { icon: MapPin, label: 'Jaipur, India', href: '#' },
+                { icon: Phone, label: '+91 86077 45499', href: 'tel:+918607745499' },
+                { icon: Mail, label: 'pankajsinghbargali@gmail.com', href: 'mailto:pankajsinghbargali@gmail.com' },
+                { icon: Globe, label: 'linkedin.com/in/pankajsinghbargali', href: 'https://linkedin.com/in/pankajsinghbargali' },
+                { icon: MapPin, label: 'Gurugram, Haryana', href: '#' },
               ].map(({ icon: Icon, label, href }) => (
                 <a
                   key={label}
                   href={href}
-                  className="flex items-center gap-4 p-4 glass rounded-xl gold-border-glow hover:bg-gold/5 transition-all group"
+                  target={href.startsWith('http') ? '_blank' : undefined}
+                  rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="flex items-center gap-4 p-4 glass rounded-xl gold-border-glow hover:bg-gold/5 hover:translate-x-1 transition-all duration-300 group"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors">
+                  <div className="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 group-hover:scale-110 transition-all">
                     <Icon className="w-5 h-5 text-gold" />
                   </div>
-                  <span className="text-sm text-foreground">{label}</span>
+                  <span className="text-sm text-foreground break-all">{label}</span>
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Form */}
           <form onSubmit={handleSubmit} className="glass rounded-2xl p-8 gold-border-glow space-y-5">
             <div>
               <Input
@@ -86,7 +87,7 @@ export default function ContactSection() {
             </div>
             <Button
               type="submit"
-              className="w-full bg-gold text-accent-foreground hover:bg-gold-dark font-semibold py-3 gold-glow"
+              className="w-full bg-gold text-accent-foreground hover:bg-gold-dark font-semibold py-3 gold-glow hover:scale-[1.02] transition-transform"
             >
               <Send className="w-4 h-4 mr-2" /> Send Message
             </Button>

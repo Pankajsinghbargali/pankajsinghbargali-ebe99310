@@ -6,10 +6,14 @@ import ExperienceSection from '@/components/ExperienceSection';
 import CertificationsSection from '@/components/CertificationsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import CustomCursor from '@/components/CustomCursor';
+import MouseSpotlight from '@/components/MouseSpotlight';
 
 const Index = () => {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background relative">
+      <CustomCursor />
+      <MouseSpotlight />
       <Navbar />
       <HeroSection />
       <AboutSection />
