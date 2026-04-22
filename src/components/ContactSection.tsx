@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Linkedin as LinkedinIcon } from 'lucide-react';
-// Note: lucide-react may not export Linkedin in this version, fallback handled below
+import { Mail, Phone, MapPin, Send, Globe } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
@@ -37,7 +36,7 @@ export default function ContactSection() {
               {[
                 { icon: Phone, label: '+91 86077 45499', href: 'tel:+918607745499' },
                 { icon: Mail, label: 'pankajsinghbargali@gmail.com', href: 'mailto:pankajsinghbargali@gmail.com' },
-                { icon: Linkedin, label: 'linkedin.com/in/pankajsinghbargali', href: 'https://linkedin.com/in/pankajsinghbargali' },
+                { icon: Globe, label: 'linkedin.com/in/pankajsinghbargali', href: 'https://linkedin.com/in/pankajsinghbargali' },
                 { icon: MapPin, label: 'Gurugram, Haryana', href: '#' },
               ].map(({ icon: Icon, label, href }) => (
                 <a
