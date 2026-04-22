@@ -5,6 +5,7 @@ import CaseStudiesSection from '@/components/CaseStudiesSection';
 import BeforeAfterSlider from '@/components/BeforeAfterSlider';
 import HowIThinkSection from '@/components/HowIThinkSection';
 import ServicesSection from '@/components/ServicesSection';
+import AdsBudgetCalculator from '@/components/AdsBudgetCalculator';
 import AboutSplitSection from '@/components/AboutSplitSection';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
@@ -23,6 +24,7 @@ const Index = () => {
       <BeforeAfterSlider />
       <HowIThinkSection />
       <ServicesSection />
+      <AdsBudgetCalculator />
       <AboutSplitSection />
       <FinalCTA />
       <Footer />
