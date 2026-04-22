@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Linkedin as LinkedinIcon } from 'lucide-react';
+// Note: lucide-react may not export Linkedin in this version, fallback handled below
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
