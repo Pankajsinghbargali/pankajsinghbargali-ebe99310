@@ -86,21 +86,21 @@ export default function CaseStudiesSection() {
             return (
               <article
                 key={c.title}
-                className="border border-border bg-card/50 rounded-2xl overflow-hidden transition-all duration-500 hover:border-ink/25"
+                className="glass-pane border border-border bg-card/50 rounded-2xl overflow-hidden transition-all duration-500 hover:border-ink/25"
               >
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="w-full flex items-center justify-between gap-6 p-6 md:p-8 text-left"
+                  className="w-full flex items-center justify-between gap-4 md:gap-6 p-5 md:p-8 text-left min-h-[44px]"
                 >
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-3 mb-3">
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-3">
                       <span className="label-eyebrow text-gold">{c.tag}</span>
-                      <span className="w-6 h-px bg-border" />
+                      <span className="hidden md:inline-block w-6 h-px bg-border" />
                       <span className="text-xs text-muted-foreground">{c.result}</span>
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-medium tracking-tight">{c.title}</h3>
+                    <h3 className="text-xl md:text-3xl font-medium tracking-tight">{c.title}</h3>
                   </div>
-                  <span className="shrink-0 w-10 h-10 rounded-full border border-border flex items-center justify-center transition-colors group-hover:border-ink">
+                  <span className="shrink-0 w-11 h-11 min-w-[44px] rounded-full border border-border flex items-center justify-center transition-colors group-hover:border-ink">
                     {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                   </span>
                 </button>
