@@ -1,4 +1,5 @@
 import RevealHeading from './RevealHeading';
+import TiltCard from './TiltCard';
 
 export default function AboutSplitSection() {
   return (
@@ -38,20 +39,32 @@ export default function AboutSplitSection() {
         </div>
 
         <div className="lg:col-span-5 order-1 lg:order-2">
-          <RevealHeading as="div" className="glass-pane relative aspect-[4/5] rounded-2xl overflow-hidden bg-card border border-border">
-            <div className="absolute inset-0 bg-gradient-to-br from-gold/15 via-transparent to-ink/10" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center px-6">
-                <div className="font-editorial text-7xl md:text-8xl text-ink/10 leading-none">PS</div>
-                <p className="mt-6 text-xs uppercase tracking-[0.25em] text-muted-foreground">
-                  Pankaj Singh — Strategist
-                </p>
+          <RevealHeading as="div" className="relative aspect-[4/5] w-full max-w-sm mx-auto lg:max-w-none">
+            <TiltCard intensity={12} className="w-full h-full rounded-2xl overflow-hidden border border-border/50 bg-background/40 backdrop-blur-xl shadow-[0_20px_40px_-20px_rgba(0,0,0,0.1)]">
+              <div className="absolute inset-0 bg-gradient-to-br from-gold/20 via-background/50 to-background/80 z-0" />
+              <div className="absolute inset-0 flex flex-col justify-between p-8 z-10">
+                <div className="flex justify-between items-start">
+                  <div className="w-12 h-12 rounded-full border border-gold/30 bg-gold/10 flex items-center justify-center">
+                    <span className="font-editorial text-xl text-gold">PS</span>
+                  </div>
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground bg-background/50 backdrop-blur px-3 py-1 rounded-full border border-border/50">
+                    Based in India · Works globally
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="space-y-1">
+                    <h3 className="text-2xl font-serif text-foreground">Pankaj Singh</h3>
+                    <p className="text-gold text-sm tracking-wide">Growth & Strategy</p>
+                  </div>
+                  <p className="text-xs text-muted-foreground leading-relaxed max-w-[90%]">
+                    Building compounding marketing assets that drive long-term revenue.
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between text-xs text-muted-foreground">
-              <span>Based in India</span>
-              <span>Available worldwide</span>
-            </div>
+            </TiltCard>
+            {/* Decorative background glow */}
+            <div className="absolute -inset-6 bg-gold/10 blur-3xl -z-10 rounded-[4rem]" />
           </RevealHeading>
         </div>
       </div>
