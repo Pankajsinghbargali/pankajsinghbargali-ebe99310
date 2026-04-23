@@ -16,8 +16,13 @@ export default function ThemeToggle() {
 
   const toggleTheme = () => {
     const next = !dark;
+    // Apply a temporary smooth-transition class for crossfade
+    const root = document.documentElement;
+    root.classList.add('theme-transitioning');
+    window.setTimeout(() => root.classList.remove('theme-transitioning'), 700);
+
     setDark(next);
-    document.documentElement.classList.toggle('dark', next);
+    root.classList.toggle('dark', next);
     localStorage.setItem(STORAGE_KEY, next ? 'dark' : 'light');
   };
 
