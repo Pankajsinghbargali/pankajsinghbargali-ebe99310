@@ -11,12 +11,14 @@ import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
 import CustomCursor from '@/components/CustomCursor';
 import MouseSpotlight from '@/components/MouseSpotlight';
+import ClickEffects from '@/components/ClickEffects';
 
 const Index = () => {
   return (
     <main className="min-h-screen bg-background relative">
       <CustomCursor />
       <MouseSpotlight />
+      <ClickEffects />
       <Navbar />
       <HeroSection />
       <ResultsStrip />

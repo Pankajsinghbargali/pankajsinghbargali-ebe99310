@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
+import useIsTouch from '@/hooks/useIsTouch';
 
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const [hovering, setHovering] = useState(false);
   const [hidden, setHidden] = useState(true);
+  const isTouch = useIsTouch();
 
   useEffect(() => {
-    // Disable on touch devices
-    if (window.matchMedia('(hover: none)').matches) return;
-
+    if (isTouch) return;
     const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     const ring = { x: pos.x, y: pos.y };
     let raf = 0;
@@ -54,7 +54,9 @@ export default function CustomCursor() {
       document.removeEventListener('mouseleave', handleLeave);
       cancelAnimationFrame(raf);
     };
-  }, [hovering, hidden]);
+  }, [hovering, hidden, isTouch]);
+
+  if (isTouch) return null;
 
   return (
     <>
