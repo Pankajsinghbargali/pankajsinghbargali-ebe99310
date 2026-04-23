@@ -18,12 +18,13 @@ export default function AboutSplitSection() {
               for real estate, B2B, and consumer brands across India and the GCC.
             </RevealHeading>
             <RevealHeading as="p" delay={300}>
-              My work sits at the intersection of audience psychology, performance media, and
-              content. I don't chase trends — I build the conditions for compounding demand.
+              I work with founders and marketing leads who'd rather build a compounding asset
+              than rent a spike. The work sits at the intersection of audience psychology,
+              performance media, and content.
             </RevealHeading>
             <RevealHeading as="p" delay={400}>
-              Recent engagements have driven a 35% reduction in CPL, a 42% lift in ROAS, and
-              over ₹15 Cr in qualified pipeline.
+              Recent engagements: 35% reduction in CPL, 42% lift in ROAS, and over ₹15 Cr in
+              qualified pipeline.
             </RevealHeading>
           </div>
 
@@ -37,7 +38,7 @@ export default function AboutSplitSection() {
         </div>
 
         <div className="lg:col-span-5 order-1 lg:order-2">
-          <RevealHeading as="div" className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-card border border-border">
+          <RevealHeading as="div" className="glass-pane relative aspect-[4/5] rounded-2xl overflow-hidden bg-card border border-border">
             <div className="absolute inset-0 bg-gradient-to-br from-gold/15 via-transparent to-ink/10" />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center px-6">

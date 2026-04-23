@@ -68,7 +68,7 @@ export default function AdsBudgetCalculator() {
         </div>
 
         <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-6 items-start">
-          <div className="rounded-2xl border border-border bg-card/70 p-5 md:p-7 shadow-[0_24px_80px_-40px_hsl(var(--ink)/0.35)]">
+          <div className="glass-pane min-w-0 rounded-2xl border border-border bg-card/70 p-5 md:p-7 shadow-[0_24px_80px_-40px_hsl(var(--ink)/0.35)]">
             <div className="grid sm:grid-cols-2 gap-3 mb-6">
               {(['Google', 'Meta'] as Platform[]).map((item) => (
                 <button
@@ -92,7 +92,7 @@ export default function AdsBudgetCalculator() {
               ))}
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-3 min-w-0">
               <NumberField icon={<IndianRupee />} label="Monthly revenue goal" value={revenueGoal} setValue={setRevenueGoal} />
               <NumberField icon={<IndianRupee />} label="Average order value" value={orderValue} setValue={setOrderValue} />
               <NumberField icon={<MousePointerClick />} label="Expected CPC" value={cpc} setValue={setCpc} />
@@ -107,7 +107,7 @@ export default function AdsBudgetCalculator() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-border bg-ink text-offwhite p-6 md:p-8 sticky top-28 overflow-hidden">
+          <div className="glass-pane min-w-0 rounded-2xl border border-border bg-ink text-offwhite p-6 md:p-8 lg:sticky lg:top-28 overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(var(--gold)/0.18)_0%,_transparent_60%)] pointer-events-none" />
             <div className="relative">
               <p className="label-eyebrow text-gold mb-5">Launch budget</p>
@@ -225,17 +225,17 @@ function getInsight(input: {
 
 function NumberField({ icon, label, value, setValue }: { icon: ReactNode; label: string; value: number; setValue: (value: number) => void }) {
   return (
-    <label className="group block rounded-xl border border-border bg-background p-4 transition-all hover:border-gold/60 focus-within:border-gold focus-within:ring-4 focus-within:ring-gold/10">
+    <label className="group block min-w-0 rounded-xl border border-border bg-background p-4 transition-all hover:border-gold/60 focus-within:border-gold focus-within:ring-4 focus-within:ring-gold/10">
       <span className="flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">
         <span className="text-gold [&_svg]:h-4 [&_svg]:w-4">{icon}</span>
-        {label}
+        <span className="truncate">{label}</span>
       </span>
       <input
         type="number"
         min="0"
         value={value}
         onChange={(event) => setValue(Number(event.target.value))}
-        className="mt-3 w-full bg-transparent text-2xl font-medium outline-none"
+        className="mt-3 w-full min-w-0 bg-transparent text-2xl font-medium outline-none"
       />
     </label>
   );

@@ -41,32 +41,39 @@ export default function Navbar() {
           <ThemeToggle />
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-ink text-offwhite text-xs font-medium hover:opacity-90 transition-all"
+            className="glass-pane inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-ink text-offwhite text-xs font-medium hover:opacity-90 transition-all"
           >
             Get in touch
           </a>
         </div>
 
-        <button onClick={() => setOpen(!open)} className="md:hidden text-foreground" aria-label="Menu">
+        <button onClick={() => setOpen(!open)} className="md:hidden text-foreground p-2 -mr-2" aria-label="Menu">
           {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
       {open && (
         <div className="md:hidden bg-background border-t border-border mt-4 px-6 py-6 space-y-4">
-          <div className="pb-3">
-            <ThemeToggle />
-          </div>
           {links.map(({ label, href }) => (
             <a
               key={label}
               href={href}
               onClick={() => setOpen(false)}
-              className="block text-sm text-foreground/80 hover:text-gold transition-colors py-1"
+              className="block text-sm text-foreground/80 hover:text-gold transition-colors py-2"
             >
               {label}
             </a>
           ))}
+          <div className="pt-4 border-t border-border flex items-center justify-between gap-3">
+            <ThemeToggle />
+            <a
+              href="#contact"
+              onClick={() => setOpen(false)}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-ink text-offwhite text-xs font-medium"
+            >
+              Get in touch
+            </a>
+          </div>
         </div>
       )}
     </nav>

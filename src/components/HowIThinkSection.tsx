@@ -4,7 +4,7 @@ const principles = [
   {
     n: '01',
     title: 'Attention is rented. Intent is earned.',
-    body: 'A viral post is a loan from the algorithm. Trust compounds — and only trust converts at scale.',
+    body: 'A viral post is a loan from the algorithm. Trust compounds — and trust is what converts.',
   },
   {
     n: '02',
@@ -14,12 +14,12 @@ const principles = [
   {
     n: '03',
     title: 'Clarity converts.',
-    body: 'The clearer the promise, the shorter the path from scroll to action. Simplify ruthlessly.',
+    body: 'The clearer the promise, the shorter the path from scroll to action.',
   },
   {
     n: '04',
     title: 'Measure what moves money.',
-    body: 'Vanity metrics flatter. Pipeline metrics decide. Instrument the funnel before optimising the ad.',
+    body: 'Vanity metrics flatter. Pipeline metrics decide. Instrument the funnel before the ad.',
   },
 ];
 

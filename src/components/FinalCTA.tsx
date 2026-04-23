@@ -16,14 +16,14 @@ export default function FinalCTA() {
         </RevealHeading>
 
         <RevealHeading as="p" delay={250} className="mt-8 text-offwhite/70 max-w-xl mx-auto">
-          One project at a time. Strategic engagements with founders and marketing leads
-          who want a system, not another vendor.
+          A handful of engagements per quarter. For teams who want a marketing system,
+          not another vendor.
         </RevealHeading>
 
         <RevealHeading as="div" delay={400} className="mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a
             href="mailto:hello@pankajsingh.in"
-            className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gold text-ink text-sm font-medium glow-ring hover:scale-[1.03] transition-transform"
+            className="glass-pane group relative inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gold text-ink text-sm font-medium glow-ring hover:scale-[1.03] transition-transform"
           >
             Start a conversation
             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
