@@ -76,7 +76,7 @@ export default function CaseStudiesSection() {
             </RevealHeading>
           </div>
           <RevealHeading as="p" delay={200} className="text-muted-foreground max-w-sm">
-            Three engagements where the system mattered more than the campaign.
+            Three engagements where outcomes came from the system, not the spend.
           </RevealHeading>
         </div>
 
