@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
-import type { ReactNode } from 'react';
-import { AlertTriangle, Calculator, CheckCircle2, IndianRupee, LineChart, MousePointerClick, TrendingUp } from 'lucide-react';
+import type { ReactNode, ElementType } from 'react';
+import { AlertTriangle, Calculator, CheckCircle2, IndianRupee, LineChart, MousePointerClick, TrendingUp, Globe, BarChart3, Users, ShoppingCart } from 'lucide-react';
 import RevealHeading from './RevealHeading';
 
 type Platform = 'Google' | 'Meta';
@@ -68,36 +68,93 @@ export default function AdsBudgetCalculator() {
         </div>
 
         <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-6 items-start">
-          <div className="glass-pane min-w-0 rounded-2xl border border-border bg-card/70 p-5 md:p-7 shadow-[0_24px_80px_-40px_hsl(var(--ink)/0.35)]">
-            <div className="grid sm:grid-cols-2 gap-3 mb-6">
-              {(['Google', 'Meta'] as Platform[]).map((item) => (
-                <button
-                  key={item}
-                  type="button"
-                  onClick={() => setPlatform(item)}
-                  className={`rounded-xl border px-4 py-3 text-sm font-medium transition-all ${platform === item ? 'border-gold bg-gold text-ink shadow-lg shadow-gold/15' : 'border-border bg-background hover:border-gold/60'}`}
+          <div className="glass-pane min-w-0 rounded-2xl border border-border p-5 md:p-7 shadow-[0_24px_80px_-40px_hsl(var(--ink)/0.35)]" style={{ background: 'rgba(10,10,20,0.72)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', borderColor: 'rgba(255,255,255,0.08)' }}>
+            {/* Glass Toggle Row */}
+            <div className="grid sm:grid-cols-2 gap-4 mb-8">
+
+              {/* Platform Toggle */}
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.18em] font-semibold mb-2 ml-1" style={{ color: 'rgba(255,255,255,0.4)' }}>Platform</p>
+                <div
+                  className="relative grid grid-cols-2 p-1.5 rounded-2xl"
+                  style={{
+                    background: 'rgba(255,255,255,0.04)',
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.08), 0 4px 20px rgba(0,0,0,0.12)',
+                  }}
                 >
-                  {item} Ads
-                </button>
-              ))}
-              {(['Lead Gen', 'E-commerce'] as BusinessType[]).map((item) => (
-                <button
-                  key={item}
-                  type="button"
-                  onClick={() => setBusinessType(item)}
-                  className={`rounded-xl border px-4 py-3 text-sm font-medium transition-all ${businessType === item ? 'border-foreground bg-foreground text-background' : 'border-border bg-background hover:border-foreground/40'}`}
+                  {/* Glowing active pill */}
+                  <div
+                    className="absolute inset-y-1.5 left-1.5 rounded-xl transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+                    style={{
+                      width: 'calc(50% - 6px)',
+                      transform: platform === 'Meta' ? 'translateX(100%)' : 'translateX(0)',
+                      background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
+                      boxShadow: '0 0 16px rgba(251,191,36,0.45), 0 2px 8px rgba(0,0,0,0.3)',
+                    }}
+                  />
+                  {([['Google', Globe], ['Meta', BarChart3]] as [Platform, ElementType][]).map(([item, Icon]) => (
+                    <button
+                      key={item}
+                      type="button"
+                      onClick={() => setPlatform(item)}
+                      className="relative z-10 flex items-center justify-center gap-2 py-3 text-sm font-semibold transition-colors duration-300"
+                      style={{ color: platform === item ? '#0a0a0a' : 'rgba(255,255,255,0.45)' }}
+                    >
+                      <Icon className="w-3.5 h-3.5" />
+                      {item} Ads
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Business Type Toggle */}
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.18em] font-semibold mb-2 ml-1" style={{ color: 'rgba(255,255,255,0.4)' }}>Business type</p>
+                <div
+                  className="relative grid grid-cols-2 p-1.5 rounded-2xl"
+                  style={{
+                    background: 'rgba(255,255,255,0.04)',
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.08), 0 4px 20px rgba(0,0,0,0.12)',
+                  }}
                 >
-                  {item}
-                </button>
-              ))}
+                  <div
+                    className="absolute inset-y-1.5 left-1.5 rounded-xl transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+                    style={{
+                      width: 'calc(50% - 6px)',
+                      transform: businessType === 'E-commerce' ? 'translateX(100%)' : 'translateX(0)',
+                      background: 'linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%)',
+                      boxShadow: '0 0 16px rgba(167,139,250,0.45), 0 2px 8px rgba(0,0,0,0.3)',
+                    }}
+                  />
+                  {([['Lead Gen', Users], ['E-commerce', ShoppingCart]] as [BusinessType, ElementType][]).map(([item, Icon]) => (
+                    <button
+                      key={item}
+                      type="button"
+                      onClick={() => setBusinessType(item)}
+                      className="relative z-10 flex items-center justify-center gap-2 py-3 text-sm font-semibold transition-colors duration-300"
+                      style={{ color: businessType === item ? '#ffffff' : 'rgba(255,255,255,0.45)' }}
+                    >
+                      <Icon className="w-3.5 h-3.5" />
+                      {item}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-3 min-w-0">
-              <NumberField icon={<IndianRupee />} label="Monthly revenue goal" value={revenueGoal} setValue={setRevenueGoal} />
-              <NumberField icon={<IndianRupee />} label="Average order value" value={orderValue} setValue={setOrderValue} />
-              <NumberField icon={<MousePointerClick />} label="Expected CPC" value={cpc} setValue={setCpc} />
-              <NumberField icon={<LineChart />} label="Click conversion rate %" value={conversionRate} setValue={setConversionRate} />
-              <NumberField icon={<Calculator />} label={businessType === 'Lead Gen' ? 'Lead close rate %' : 'Cart checkout rate %'} value={closeRate} setValue={setCloseRate} />
+            <div className="grid sm:grid-cols-2 gap-5 min-w-0">
+              <NumberField icon={<IndianRupee />} label="Monthly revenue goal" value={revenueGoal} setValue={setRevenueGoal} min={10000} max={10000000} step={10000} />
+              <NumberField icon={<IndianRupee />} label="Average order value" value={orderValue} setValue={setOrderValue} min={100} max={100000} step={500} />
+              <NumberField icon={<MousePointerClick />} label="Expected CPC" value={cpc} setValue={setCpc} min={5} max={500} step={1} />
+              <NumberField icon={<LineChart />} label="Click conversion rate %" value={conversionRate} setValue={setConversionRate} min={0.5} max={20} step={0.5} />
+              <NumberField icon={<Calculator />} label={businessType === 'Lead Gen' ? 'Lead close rate %' : 'Cart checkout rate %'} value={closeRate} setValue={setCloseRate} min={1} max={100} step={1} />
             </div>
 
             <div className="mt-6 grid md:grid-cols-3 gap-3">
@@ -107,22 +164,30 @@ export default function AdsBudgetCalculator() {
             </div>
           </div>
 
-          <div className="glass-pane min-w-0 rounded-2xl border border-border bg-ink text-offwhite p-6 md:p-8 lg:sticky lg:top-28 overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(var(--gold)/0.18)_0%,_transparent_60%)] pointer-events-none" />
+          {/* Launch Budget Card — always dark, immune to theme */}
+          <div
+            className="min-w-0 rounded-2xl border p-6 md:p-8 lg:sticky lg:top-28 overflow-hidden relative"
+            style={{
+              background: 'linear-gradient(135deg, #0a0a0a 0%, #111111 100%)',
+              borderColor: 'rgba(255,215,0,0.25)',
+              color: '#ffffff',
+            }}
+          >
+            <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at top, rgba(255,215,0,0.12) 0%, transparent 60%)' }} />
             <div className="relative">
-              <p className="label-eyebrow text-gold mb-5">Launch budget</p>
-              <div className="text-5xl md:text-6xl font-semibold tracking-tight">{currency.format(results.dailyBudget)}</div>
-              <p className="mt-2 text-offwhite/60">recommended per day</p>
+              <p className="mb-5 text-xs uppercase tracking-[0.2em] font-medium" style={{ color: '#ffd700' }}>Launch budget</p>
+              <div className="text-5xl md:text-6xl font-semibold tracking-tight" style={{ color: '#ffffff' }}>{currency.format(results.dailyBudget || 0)}</div>
+              <p className="mt-2 text-sm" style={{ color: 'rgba(255,255,255,0.55)' }}>recommended per day</p>
 
               <div className="grid grid-cols-2 gap-3 mt-8">
-                <Metric label="Monthly spend" value={currency.format(results.monthlySpend)} />
-                <Metric label="Projected ROAS" value={`${results.roas.toFixed(1)}x`} />
-                <Metric label={businessType === 'Lead Gen' ? 'Customers' : 'Orders'} value={results.customers.toLocaleString('en-IN')} />
-                <Metric label={`Needed ${leadLabel}`} value={results.leadsOrCarts.toLocaleString('en-IN')} />
-                <Metric label="Clicks" value={results.clicks.toLocaleString('en-IN')} className="col-span-2" />
+                <Metric label="Monthly spend" value={currency.format(results.monthlySpend || 0)} className="bg-white/5 border-white/10 text-white" />
+                <Metric label="Projected ROAS" value={`${(results.roas || 0).toFixed(1)}x`} className="bg-white/5 border-white/10 text-white" />
+                <Metric label={businessType === 'Lead Gen' ? 'Customers' : 'Orders'} value={results.customers.toLocaleString('en-IN')} className="bg-white/5 border-white/10 text-white" />
+                <Metric label={`Needed ${leadLabel}`} value={results.leadsOrCarts.toLocaleString('en-IN')} className="bg-white/5 border-white/10 text-white" />
+                <Metric label="Clicks" value={results.clicks.toLocaleString('en-IN')} className="col-span-2 bg-white/5 border-white/10 text-white" />
               </div>
 
-              <p className="mt-6 text-sm leading-relaxed text-offwhite/65">
+              <p className="mt-6 text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.6)' }}>
                 Start here, then shift 10-15% toward the audience or keyword set that produces the lowest qualified acquisition cost after the first learning cycle.
               </p>
             </div>
@@ -223,29 +288,74 @@ function getInsight(input: {
   };
 }
 
-function NumberField({ icon, label, value, setValue }: { icon: ReactNode; label: string; value: number; setValue: (value: number) => void }) {
+function NumberField({ icon, label, value, setValue, min, max, step }: { icon: ReactNode; label: string; value: number; setValue: (value: number) => void; min: number; max: number; step: number }) {
+  const pct = ((value - min) / (max - min)) * 100;
   return (
-    <label className="group block min-w-0 rounded-xl border border-border bg-background p-4 transition-all hover:border-gold/60 focus-within:border-gold focus-within:ring-4 focus-within:ring-gold/10">
-      <span className="flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">
-        <span className="text-gold [&_svg]:h-4 [&_svg]:w-4">{icon}</span>
+    <div
+      className="group block min-w-0 rounded-xl p-5 transition-all"
+      style={{
+        background: 'rgba(255,255,255,0.03)',
+        border: '1px solid rgba(255,255,255,0.07)',
+        backdropFilter: 'blur(8px)',
+      }}
+    >
+      <div className="flex items-center gap-2 text-xs uppercase tracking-[0.16em] mb-4" style={{ color: 'rgba(255,255,255,0.4)' }}>
+        <span className="[&_svg]:h-4 [&_svg]:w-4" style={{ color: '#fbbf24' }}>{icon}</span>
         <span className="truncate">{label}</span>
-      </span>
+      </div>
       <input
         type="number"
-        min="0"
+        min={min}
+        max={max}
+        step={step}
         value={value}
         onChange={(event) => setValue(Number(event.target.value))}
-        className="mt-3 w-full min-w-0 bg-transparent text-2xl font-medium outline-none"
+        className="w-full min-w-0 bg-transparent text-2xl font-medium outline-none mb-5 transition-colors"
+        style={{ color: '#ffffff' }}
       />
-    </label>
+      {/* Custom styled range track */}
+      <div className="relative h-1.5 rounded-full" style={{ background: 'rgba(255,255,255,0.08)' }}>
+        {/* Filled portion */}
+        <div
+          className="absolute left-0 top-0 h-full rounded-full"
+          style={{
+            width: `${pct}%`,
+            background: 'linear-gradient(90deg, #f59e0b, #fbbf24)',
+            boxShadow: '0 0 8px rgba(251,191,36,0.5)',
+          }}
+        />
+        {/* Invisible native range on top for interaction */}
+        <input
+          type="range"
+          min={min}
+          max={max}
+          step={step}
+          value={value}
+          onChange={(e) => setValue(Number(e.target.value))}
+          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+          style={{ margin: 0 }}
+        />
+        {/* Thumb indicator */}
+        <div
+          className="absolute top-1/2 w-4 h-4 rounded-full -translate-y-1/2 -translate-x-1/2 transition-transform group-hover:scale-125"
+          style={{
+            left: `${pct}%`,
+            background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
+            boxShadow: '0 0 10px rgba(251,191,36,0.7), 0 0 20px rgba(251,191,36,0.3)',
+            border: '2px solid rgba(255,255,255,0.3)',
+            pointerEvents: 'none',
+          }}
+        />
+      </div>
+    </div>
   );
 }
 
 function Metric({ label, value, className = '' }: { label: string; value: string; className?: string }) {
   return (
-    <div className={`rounded-xl border border-offwhite/10 bg-offwhite/5 p-4 ${className}`}>
-      <div className="text-lg font-semibold">{value}</div>
-      <div className="mt-1 text-xs uppercase tracking-[0.14em] text-offwhite/45">{label}</div>
+    <div className={`rounded-xl border p-4 ${className}`}>
+      <div className="text-lg font-semibold text-inherit">{value}</div>
+      <div className="mt-1 text-xs uppercase tracking-[0.14em] opacity-60 text-inherit">{label}</div>
     </div>
   );
 }

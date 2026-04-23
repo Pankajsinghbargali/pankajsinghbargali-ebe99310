@@ -41,14 +41,14 @@ export default function Navbar() {
           <ThemeToggle />
           <a
             href="#contact"
-            className="glass-pane inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-ink text-offwhite text-xs font-medium hover:opacity-90 transition-all"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-black text-white dark:bg-white dark:text-black text-xs font-medium hover:opacity-90 transition-all"
           >
             Get in touch
           </a>
         </div>
 
         <button onClick={() => setOpen(!open)} className="md:hidden text-foreground p-2 -mr-2" aria-label="Menu">
-          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          {open ? <X className="w-��5 h-5" /> : <Menu className="w-��5 h-5" />}
         </button>
       </div>
 
@@ -69,7 +69,7 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={() => setOpen(false)}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-ink text-offwhite text-xs font-medium"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-black text-white dark:bg-white dark:text-black text-xs font-medium"
             >
               Get in touch
             </a>

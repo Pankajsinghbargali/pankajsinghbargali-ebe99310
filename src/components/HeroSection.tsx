@@ -1,7 +1,5 @@
 import { Suspense, lazy, useEffect, useRef } from 'react';
-import { ArrowDown, ArrowRight, Sparkles } from 'lucide-react';
-import GoogleAdsIcon from './brand/GoogleAdsIcon';
-import MetaAdsIcon from './brand/MetaAdsIcon';
+import { ArrowDown, ArrowRight, Wand2, Clock } from 'lucide-react';
 
 const GlassBlob3D = lazy(() => import('./GlassBlob3D'));
 
@@ -63,16 +61,7 @@ export default function HeroSection() {
       </div>
 
       <div className="container-narrow relative z-10 grid lg:grid-cols-12 gap-12 items-center pt-24 pb-16">
-        {/* Vertical metric strip — desktop only */}
-        <div className="hidden lg:flex lg:col-span-1 flex-col items-start gap-8 [writing-mode:vertical-rl] rotate-180 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-          <span>5+ yrs</span>
-          <span className="text-gold">·</span>
-          <span>₹15Cr+ pipeline</span>
-          <span className="text-gold">·</span>
-          <span>35% lower CPL</span>
-        </div>
-
-        <div ref={textRef} className="lg:col-span-6 transition-transform duration-300 ease-out">
+        <div ref={textRef} className="lg:col-span-8 lg:col-start-3 transition-transform duration-300 ease-out">
           <div className="animate-fade-up">
             <span className="label-eyebrow inline-flex items-center gap-2">
               <span className="w-6 h-px bg-gold" />
@@ -113,41 +102,38 @@ export default function HeroSection() {
           >
             <a
               href="#case-studies"
-              className="glass-pane group inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-ink text-offwhite text-sm font-medium hover:opacity-95 transition-all"
+              className="group inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-black text-white dark:bg-white dark:text-black text-sm font-medium hover:scale-105 transition-all shadow-lg shadow-gold/10"
             >
               View My Work
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="#contact"
-              className="glass-pane inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full border border-ink/15 text-ink text-sm font-medium hover:bg-ink/5 transition-all"
+              className="glass-pane inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full border border-border text-foreground text-sm font-medium hover:bg-foreground/5 hover:scale-105 transition-all"
             >
               Start a conversation
             </a>
           </div>
 
-          {/* Trusted on glass strip */}
+          {/* Bold Anti-Agency Tagline */}
           <div
-            className="mt-10 inline-flex items-center gap-4 px-5 py-3 rounded-full glass-pane animate-fade-up"
+            className="mt-10 inline-flex flex-wrap items-center justify-center gap-3 sm:gap-5 px-6 py-3.5 rounded-full glass-pane border border-gold/30 bg-background/40 animate-fade-up"
             style={{ animationDelay: '950ms', animationFillMode: 'both' }}
           >
-            <span className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-              <Sparkles className="w-3 h-3 text-gold" />
-              Trusted on
+            <span className="flex items-center gap-2 text-[10px] sm:text-xs uppercase tracking-[0.15em] text-muted-foreground font-semibold">
+              <Wand2 className="w-3.5 h-3.5 text-gold" />
+              I don't do black magic
             </span>
-            <span className="w-px h-4 bg-border" />
-            <span className="flex items-center gap-2 text-xs font-medium text-foreground/80">
-              <GoogleAdsIcon className="h-4 w-4" /> Google Ads
-            </span>
-            <span className="w-px h-4 bg-border" />
-            <span className="flex items-center gap-2 text-xs font-medium text-foreground/80">
-              <MetaAdsIcon className="h-4 w-6" /> Meta Ads
+            <span className="hidden sm:block w-px h-4 bg-border/80" />
+            <span className="flex items-center gap-2 text-[10px] sm:text-xs uppercase tracking-[0.15em] text-foreground/90 font-semibold">
+              <Clock className="w-3.5 h-3.5 text-muted-foreground opacity-60" />
+              No overnight results guarantee
             </span>
           </div>
         </div>
 
         {/* Spacer for desktop blob position */}
-        <div className="hidden lg:block lg:col-span-5" />
+        <div className="hidden lg:block lg:col-span-4" />
       </div>
 
       <a
