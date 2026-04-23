@@ -1,108 +1,96 @@
 
 
-## Premium Marketing Strategist Portfolio — Full Redesign
+## Polish Pass — Hero, Effects, Mobile, Branding
 
-A complete pivot from the current royal purple/gold theme to a minimal, editorial, luxury-brand aesthetic. Same person (Pankaj Singh), repositioned as a strategist with confident, authoritative voice.
+A focused refinement covering eight issues raised. No structural rewrite — surgical upgrades to existing components plus a new favicon and brand strip.
 
-### New Design System
+### 1. Hero section upgrade
 
-**Color palette** (replacing purple/gold):
-- Background: Off-white `#F5F2ED` (soft beige) for light sections
-- Deep ink: `#0A0A0A` near-black for text and dark sections
-- Soft beige surface: `#EAE5DC`
-- Subtle accent: Muted gold `#B8924A` (used sparingly — underlines, dots, button glow only)
-- Muted text: `#6B6760`
+- Replace placeholder layout balance with a stronger composition: oversized headline kept, but add a thin **vertical metric strip** on the left edge (small caps: "5+ yrs · ₹15Cr+ pipeline · 35% lower CPL") and a soft **glass-card "trusted on" row** below the CTAs showing **Google Ads** and **Meta Ads** logos as inline SVG icons.
+- Sharper entrance: word-by-word stagger on the headline (mask + fade-up per word) instead of a single block fade.
+- Add a slow **gradient mesh aura** behind the 3D blob (animated radial gradient drifting in the dark direction) — gives depth in dark mode.
+- Improve the GlassBlob: brighter rim light + a **second smaller orbiting sphere** with a subtle gold-tinted material.
+- Refined CTAs with the new global glass-glance treatment.
 
-**Typography**: Switch from Playfair/DM Sans to **Inter** (body + UI) and **Instrument Serif** for occasional editorial pull-quotes. Generous tracking on small caps labels. Headlines big, tight leading.
+### 2. Click effect — proper ripple + shockwave
 
-**Spacing & shape**: `rounded-2xl` softness, generous `py-32` section padding, max-width 1200px container, lots of whitespace.
+- Rewrite `ClickEffects.tsx`. Current ripple is invisible on dark backgrounds and conflicts with `overflow:hidden` injection on parent elements (breaks layout in some cards).
+- New behaviour: a **fixed-position double pulse** rendered at body level (no DOM mutation of the target). Inner gold dot expands + fades; outer ring shockwave expands wider with a slight blur. Adapts color to light/dark via CSS vars.
+- Add subtle haptic-style scale on the clicked element (`active:scale-[.98]`) via global CSS — already partially there, refine to feel premium.
 
-### Section-by-Section Build
+### 3. Smooth dark-mode transition
 
-```text
-┌─────────────────────────────────────────┐
-│ NAV (minimal, transparent → solid)     │
-├─────────────────────────────────────────┤
-│ HERO                                    │
-│   Big headline + subtle 3D glass blob  │
-│   "View My Work" CTA                   │
-├─────────────────────────────────────────┤
-│ RESULTS STRIP (3 metrics, horizontal)  │
-├─────────────────────────────────────────┤
-│ CASE STUDIES (expandable cards)        │
-├─────────────────────────────────────────┤
-│ BEFORE / AFTER (drag slider)           │
-├─────────────────────────────────────────┤
-│ HOW I THINK (4 principles, editorial)  │
-├─────────────────────────────────────────┤
-│ SERVICES (icon grid, lift on hover)    │
-├─────────────────────────────────────────┤
-│ ABOUT (split text + portrait)          │
-├─────────────────────────────────────────┤
-│ FINAL CTA (dark section, glow button)  │
-├─────────────────────────────────────────┤
-│ FOOTER                                  │
-└─────────────────────────────────────────┘
-```
+- Add a **view-transition style** color crossfade: when toggling theme, briefly apply a `transition: background-color 600ms, color 600ms, border-color 600ms` to `html, body, *` via a temporary class, then remove. Eliminates the flash and makes accents glide.
+- ThemeToggle: animate the thumb with a spring-feel cubic-bezier and add a soft glow burst on click.
+- Add `color-scheme` CSS property so native form controls follow the theme.
 
-1. **Hero** — Full-screen off-white. Headline: *"I build marketing systems that turn attention into intent."* Sub: *"Content, strategy, and psychology designed to attract the right audience."* CTA "View My Work". Right side: a subtle floating 3D glassmorphic blob (replaces the wireframe globe) — soft refraction, slow rotation, mouse-parallax. Fade-up entrance.
+### 4. Google Ads + Meta Ads icons
 
-2. **Results Strip** — Horizontal band, three metrics with thin icons: `3X Engagement Growth`, `60% Better Lead Quality`, `Multi-platform Strategy Execution`. Hairline dividers between them. Soft hover scale.
+- Add inline brand-mark SVG components (`src/components/brand/GoogleAdsIcon.tsx`, `MetaAdsIcon.tsx`) — official-style coloured marks, accessible, scalable.
+- Use them in:
+  - Hero "Trusted platforms" glass row
+  - Services section (Performance Marketing card shows both small icons)
+  - Case Studies (Real Estate card adds a tiny "Google Ads · Meta Ads" channel chip)
 
-3. **Case Studies** — Grid of 3 cards (Real Estate Lead Engine, B2B Pipeline Builder, Travel Brand Relaunch). Click expands inline with Challenge → Strategy → Execution → Result. Subtle parallax on scroll using transform on translateY based on scrollY.
+### 5. Glass-glance effect everywhere
 
-4. **Before vs After** — A draggable horizontal divider revealing two states (e.g., "Generic ad creative" vs "Strategy-led creative" or a metrics dashboard before/after). Built with pointer events; smooth thumb drag.
+- Add a global `.glass-pane` utility: backdrop-blur + translucent surface + 1px hairline border + a moving **diagonal sheen** on hover (animated `::before` gradient sweep).
+- Apply to: Navbar, Case Study cards, Services grid tiles, About portrait card, Before/After container, Final CTA button, Budget Calculator panel, Footer top edge.
+- Tuned per theme — light mode: warm white frost; dark mode: deep ink with subtle gold rim.
 
-5. **How I Think** — Four numbered principles in editorial layout (large serif numerals, short text). Examples: *"Attention is rented. Intent is earned."*, *"Systems beat campaigns."*, *"Clarity converts."*, *"Measure what moves money."* Stagger fade-in.
+### 6. Mobile fixes
 
-6. **Services / What I Do** — Grid of 6 cards with thin Lucide icons: Performance Marketing, Content Strategy, Funnel Design, Brand Positioning, Marketing Automation, Analytics & Insights. Hover: lift + soft gold glow.
+- **Navbar mobile menu**: theme toggle currently in `hidden md:flex` — show it inside the open mobile sheet (already partially there) and ensure the "Get in touch" button also appears.
+- **HeroSection**: 3D blob is `lg:col-span-5` and disappears on small screens because parent grid hides it implicitly via stacking — keep blob visible but constrained to ~280px height on mobile, layered behind text with reduced opacity for a hero accent rather than side-by-side.
+- **BeforeAfterSlider**: `touch-none` blocks vertical scroll on mobile — replace with proper pointer logic that only captures horizontal drags after a small threshold; add tap-to-jump on the track.
+- **AdsBudgetCalculator**: ensure inputs/sliders wrap (current grid likely overflows on small screens — audit and add `min-w-0` + responsive grid).
+- **CustomCursor + MouseSpotlight**: confirm they're properly `display:none` on `(hover: none)` (CSS already targets `cursor: none`, but the elements still mount — gate render with a `useIsTouch` hook).
+- **CaseStudies expand button**: add `min-h-[44px]` tap targets and ensure the +/- icon button doesn't overflow on narrow screens.
 
-7. **About** — Split: left text (repositioned bio — strategist tone, no buzzwords), right image placeholder with soft gradient frame. Slight motion on scroll.
+### 7. Favicon + remove "Made with Lovable"
 
-8. **Final CTA** — Full-bleed near-black section. *"If you want better marketing, not just more marketing — let's talk."* Button with pulsing soft gold glow ring.
+- Create a custom favicon: an SVG mark "PS" inside a gold ring on ink background. Add to `public/favicon.svg` and reference in `index.html` (`<link rel="icon" type="image/svg+xml" href="/favicon.svg">`) plus a fallback PNG.
+- Update `<title>` and meta to remove generic "AI-powered" wording, switch to: *"Pankaj Singh — Marketing Strategist | Systems for compounding demand"*.
+- Hide the Lovable badge via the `publish_settings--set_badge_visibility` tool (`hide_badge: true`).
 
-### Signature Interaction (memorability)
+### 8. Copy improvements (confident, minimal, no buzzwords)
 
-A **custom magnetic cursor** + a hero **scroll-triggered transformation**: as the user scrolls past the hero, the 3D glass blob morphs/scales and slides into the Results Strip, becoming a small accent element — visually tying the two sections together. Plus a subtle text-reveal mask on H2s as they enter the viewport.
+Rewrites across all sections:
 
-### 3D Element
+- **Hero headline**: keep — already strong.
+- **Hero sub**: → *"I design content, funnels, and media systems that turn the right attention into measurable revenue."*
+- **Results Strip**: relabel with sharper outcomes — *"3× Engagement"*, *"60% Sharper Lead Quality"*, *"Multi-channel by design"*, plus add a 4th tile *"₹15Cr+ Pipeline Generated"*.
+- **Case Studies intro**: → *"Three engagements where outcomes came from the system, not the spend."*
+- **How I Think**: tighten principle bodies; remove any remaining filler.
+- **Services intro**: → *"Six disciplines, one operating system for growth."*
+- **About**: remove "I don't chase trends" cliché; replace with *"I work with founders and marketing leads who'd rather build a compounding asset than rent a spike."*
+- **Final CTA sub**: → *"A handful of engagements per quarter. For teams who want a marketing system, not another vendor."*
+- **Footer tagline**: → *"Built with intent, in Inter & Instrument Serif."*
+- **Meta description**: → *"Marketing strategist building content, media, and funnel systems for founders and growth teams. ₹15Cr+ pipeline, 35% lower CPL, 42% ROAS lift."*
 
-Replace `Globe3D` with `GlassBlob3D` — a `@react-three/drei` `MeshTransmissionMaterial`-style blend (use `meshPhysicalMaterial` with transmission, roughness 0.1, thickness, env-mapped) wrapped on a rounded icosahedron. Slow rotation, mouse-parallax tilt, very subtle. Uses existing `three` + `@react-three/fiber` + `@react-three/drei` already installed.
+### Files touched
 
-### Files to Change
+**New**
+- `public/favicon.svg`
+- `src/components/brand/GoogleAdsIcon.tsx`
+- `src/components/brand/MetaAdsIcon.tsx`
+- `src/hooks/useIsTouch.ts`
 
-**Design tokens**
-- `src/index.css` — rewrite color tokens (off-white bg, near-black fg, beige surface, muted gold accent), swap fonts to Inter + Instrument Serif via Google Fonts, replace `gold-shimmer` with a subtle text-mask reveal utility, keep tilt glare lighter.
-- `tailwind.config.ts` — update `fontFamily` (sans: Inter, serif: Instrument Serif), add subtle keyframes (`reveal-mask`, `glow-pulse`, `float-slow`).
+**Rewritten**
+- `src/components/HeroSection.tsx` — new composition, brand strip, word-stagger
+- `src/components/ClickEffects.tsx` — body-level shockwave
+- `src/components/ThemeToggle.tsx` — smoother transition + burst
+- `src/components/Navbar.tsx` — mobile menu fixes
+- `src/components/BeforeAfterSlider.tsx` — better touch handling
+- `src/components/Footer.tsx` — copy + glass top edge
+- `src/components/GlassBlob3D.tsx` — orbital sphere + brighter rim
+- `src/index.css` — `.glass-pane` utility, theme-transition class, click effect keyframes, mobile cursor gating
+- `tailwind.config.ts` — new keyframes (`sheen`, `shockwave`, `word-up`)
+- `index.html` — favicon link, updated meta + title
 
-**New components**
-- `src/components/GlassBlob3D.tsx` — replaces Globe3D
-- `src/components/ResultsStrip.tsx`
-- `src/components/CaseStudiesSection.tsx` (with expandable cards)
-- `src/components/BeforeAfterSlider.tsx` (drag comparison)
-- `src/components/HowIThinkSection.tsx`
-- `src/components/ServicesSection.tsx`
-- `src/components/AboutSplitSection.tsx` (replaces current AboutSection)
-- `src/components/FinalCTA.tsx`
-- `src/components/RevealHeading.tsx` (mask reveal on scroll)
+**Tweaked copy**
+- `ResultsStrip.tsx`, `CaseStudiesSection.tsx`, `HowIThinkSection.tsx`, `ServicesSection.tsx`, `AboutSplitSection.tsx`, `FinalCTA.tsx`
 
-**Rewrite**
-- `src/components/HeroSection.tsx` — new headline, glass blob, fade-up
-- `src/components/Navbar.tsx` — new links (Work, Thinking, Services, About, Contact), minimal underline-on-hover
-- `src/components/CustomCursor.tsx` — refine magnetic behaviour, switch dot to deep ink color
-- `src/components/MouseSpotlight.tsx` — tone down to a very subtle warm-white spotlight
-- `src/components/Footer.tsx` — minimal version
-- `src/pages/Index.tsx` — new section order
-
-**Remove from page** (keep files, just unused): `SkillsSection`, `ExperienceSection`, `CertificationsSection`, `ContactSection` (replaced by Final CTA + footer email).
-
-### Tone & Copy
-
-All copy rewritten in confident, minimal voice. No "AI-Powered" badges, no "Royal", no buzzwords. Achievements (35% CPL, 42% ROAS, 15Cr+ pipeline) folded into Case Studies as concrete outcomes, not as stat counters.
-
-### Performance
-
-- Glass blob behind `Suspense` + `lazy`, disabled on `prefers-reduced-motion`
-- Parallax via `transform` only (GPU); throttle scroll handlers with `requestAnimationFrame`
-- Custom cursor disabled on touch devices (already handled)
+**Settings**
+- Hide Lovable badge via publish settings tool.
 
