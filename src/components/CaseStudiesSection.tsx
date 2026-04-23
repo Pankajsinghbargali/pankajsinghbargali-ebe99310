@@ -14,7 +14,7 @@ interface Case {
 
 const cases: Case[] = [
   {
-    tag: 'Real Estate',
+    tag: 'Real Estate · Google Ads · Meta Ads',
     title: 'Real Estate Lead Engine',
     result: '35% lower CPL · 15Cr+ pipeline',
     challenge: 'High-intent buyers were buried under generic listing traffic, inflating cost-per-lead and exhausting the sales team with low-quality enquiries.',
